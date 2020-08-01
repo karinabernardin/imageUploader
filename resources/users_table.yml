@@ -1,0 +1,14 @@
+Resources: # CloudFormation template syntax from here on. The table will be created when you run serverless deploy
+  usersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:provider.environment.DYNAMODB_USERS_TABLE}
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
